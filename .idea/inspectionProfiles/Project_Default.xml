@@ -1,0 +1,17 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="PyUnresolvedReferencesInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredIdentifiers">
+        <list>
+          <option value="loader.dp.message_handler" />
+          <option value="users.views.Authenticated" />
+          <option value="books.views.Books" />
+          <option value="users.views.messages" />
+          <option value="users.views.UserCreateForms" />
+          <option value="speech_recognition" />
+        </list>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>

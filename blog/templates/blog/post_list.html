@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load blog_tags %}
+
+
+{% block content %}
+
+
+<!--<form method="get">-->
+<!--    {% csrf_token %}-->
+<!--    {{ form.as_p }}-->
+<!--    <button>Search</button>-->
+<!--</form>-->
+<!--{% with results.count as total_count %}-->
+<!--<p><b>Found {{ total_count }} posts</b></p>-->
+<!--{% endwith %}-->
+<!--{% for post in results %}-->
+
+<!--<h3>-->
+<!--    <a href="{% url 'blog:post_detail' post.id %}">{{ post.title }}</a>-->
+
+<!--</h3>-->
+
+<!--{% endfor %}-->
+
+<!--<br><hr>-->
+ {% for post in posts %}
+          <h2>
+          <a href="{% url 'blog:post_detail' post.id %}" >
+          {{ post.title }}
+          </a>
+          </h2>
+     {% if post.tags %}
+              <p class="tags">
+                     Tags:
+                     {% for tag in post.tags.all %}
+                     <a href="{% url "blog:post_list_by_tag" tag.slug %}">
+                     {{ tag.name }}
+                     </a>
+                     {% if not forloop.last %}, {% endif %}
+                     {% endfor %}
+              </p>
+     {% endif %}
+           <p class="date">
+           Published {{ post.publish }} by {{ post.author }}
+           </p>
+           {{ post.body|markdown|truncatewords_html:30 }}
+ {% endfor %}
+
+
+ {% if posts.has_previous %}
+  <a href="?page={{ posts.previous_page_number }}"><< Previous</a>
+ {% endif %}
+  {% if posts.has_next %}
+ <a href="?page={{ posts.next_page_number }}">Next >></a>
+ {% endif %}
+
+{% endblock %}
